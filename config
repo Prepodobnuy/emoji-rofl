@@ -1,0 +1,4 @@
+SaveToText= 1
+ReadFromFile= 1
+SaveName= Result.txt
+ReadName= text.txt
