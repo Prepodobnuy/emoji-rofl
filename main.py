@@ -1,26 +1,6 @@
 from toemoji import spaceToEmoji
+from configreader import Config
 
-
-def readconf() -> bool:
-    
-    SaveToText = False
-    ReadFromFile = True
-    SaveName = 'result.txt'
-    ReadName = 'text.txt'
-
-    with open('config') as file:
-        conf_list = file.read().split('\n')
-        
-        if conf_list[0].split()[1] == '1':
-            SaveToText = True
-        
-        if conf_list[1].split()[1] == '0':
-            ReadFromFile = False
-
-        SaveName = conf_list[2].split()[1]
-        ReadName = conf_list[3].split()[1]
-    
-    return SaveToText, ReadFromFile, ReadName, SaveName
 
 def readFromFile(filename:str) -> str:
     
@@ -29,24 +9,30 @@ def readFromFile(filename:str) -> str:
     
     return res
 
-def writeToFile(filename:str, text:str) -> None:
+def writeToFile(filename:str, textToWrite:str) -> None:
 
     with open(filename, 'w+') as file:
-        file.write(text)
+        file.write(textToWrite)
 
-SaveToText, ReadFromFile, ReadName, SaveName = readconf()
+config = Config()
+
+SaveToFile = config.savetofile()
+ReadFromFile = config.readfromfile()
+ReadName =  config.readfilename()
+SaveName = config.savefilename()
+FileFormat = config.fileformat()
 
 def main():
     
     if ReadFromFile:
-        text = readFromFile(ReadName)
+        text = readFromFile(ReadName + FileFormat)
     else:
         text = input('>')
 
     res = spaceToEmoji(text)
 
-    if SaveToText:
-        writeToFile(SaveName, res)
+    if SaveToFile:
+        writeToFile(SaveName + FileFormat, res)
     else:
         print(res)
 

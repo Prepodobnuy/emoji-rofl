@@ -1,4 +1,15 @@
-SaveToText= 1
+SaveToFile= 1
 ReadFromFile= 1
-SaveName= Result.txt
-ReadName= text.txt
+SaveName= Result
+ReadName= text
+EmojiName= emojilist
+fileformat= .txt
+
+#SaveToFile  : 1-True 0-False(instead of saving file it will return it)
+#ReadFromFile: 1-True 0-False(instead of reading from file it will use input())
+
+#!!!DONT WRITE FILE NAMES WITH FORMAT!!!
+#SaveName    : Name of result file(if SaveToFile==1) 
+#ReadName    : Name of start file(if ReadFromFile==1) 
+#emojifile   : Name of file which contains emojis
+#fileformat  : Format of files like .txt .md (if you want to change it you would need to change format of ReadName and EmojiName)

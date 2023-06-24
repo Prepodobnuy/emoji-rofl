@@ -1,10 +1,16 @@
 from random import randint
 
+from configreader import Config
+
 
 def spaceToEmoji(string:str) -> str:
     res = ''
     
-    emoji_list = ['😀','🤢','🥺','🥹','😁','😆','😅','🙂','😚','😙','🤫','🤮','🤧','😎','🥸','😳','💀','😣','😈','👿','🤬','💔','❤️','🖤','🙈','😻','🤡','💩',]
+    config = Config()
+
+    file = open(f'{config.emojifile()}{config.fileformat()}')
+    emojis = file.read().replace('\n', '').replace(' ', '')
+    file.close()
 
     newstring = string.split('\n')
     string = ''
@@ -15,11 +21,10 @@ def spaceToEmoji(string:str) -> str:
         if string[i] != ' ':
             res += string[i]
         else:
-            res += emoji_list[randint(0, len(emoji_list)-1)]
+            res += emojis[randint(0, len(emojis)-1)]
     
     return res
 
 if __name__ == '__main__':
     ask = input('>')
     print(spaceToEmoji(ask))
-    print(randint(1,10))
