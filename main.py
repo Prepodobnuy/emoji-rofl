@@ -34,7 +34,7 @@ def main():
     if SaveToFile:
         writeToFile(SaveName + FileFormat, res)
     else:
-        print(res)
+        return(res)
 
 
 if __name__ == '__main__':
